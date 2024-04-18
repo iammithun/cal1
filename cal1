@@ -1,0 +1,44 @@
+import turtle
+
+# Define your function here (for example, a quadratic function)
+def f(x):
+    return x ** 2
+
+# Define your integral bounds
+a = 0  # Lower bound
+b = 4  # Upper bound
+
+# Define the number of rectangles for approximation
+num_rectangles = 50
+
+# Calculate the width of each rectangle
+dx = (b - a) / num_rectangles
+
+# Set up the turtle
+turtle.speed(0)  # Set the speed of the turtle (0 is fastest)
+turtle.penup()
+turtle.goto(a, 0)  # Move to the starting position
+turtle.pendown()
+
+# Draw the rectangles
+for _ in range(num_rectangles):
+    # Calculate the height of the rectangle (using midpoint method)
+    x_mid = a + (_ + 0.5) * dx
+    height = f(x_mid)
+
+    # Draw the rectangle
+    turtle.begin_fill()
+    for _ in range(2):
+        turtle.forward(dx)
+        turtle.left(90)
+        turtle.forward(height)
+        turtle.left(90)
+    turtle.end_fill()
+
+    # Move to the starting point of the next rectangle
+    turtle.penup()
+    turtle.goto(a + (_ + 1) * dx, 0)
+    turtle.pendown()
+
+# Keep the window open until it's closed by the user
+turtle.done()
